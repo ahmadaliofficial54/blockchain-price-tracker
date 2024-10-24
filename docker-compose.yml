@@ -1,0 +1,21 @@
+version: '3.8'
+services:
+  app:
+    build: .
+    ports:
+      - '3000:3000'
+    environment:
+      - MORALIS_API_KEY=${MORALIS_API_KEY}
+      - EMAIL=${EMAIL}
+      - PASSWORD=${PASSWORD}
+    depends_on:
+      - db
+
+  db:
+    image: postgres
+    environment:
+      POSTGRES_DB: blockchain_price_tracker
+      POSTGRES_USER: your_username
+      POSTGRES_PASSWORD: your_password
+    ports:
+      - '5432:5432'
